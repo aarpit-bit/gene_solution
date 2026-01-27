@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Booking Form - SPOTMAS</title>
+  <link rel="stylesheet" href="booking-style.css">
+</head>
+<body>
+
+<div class="top-logo">
+  <img src="assets/gene-solutions-logo.png" alt="Gene Solutions">
+</div>
+
+<div class="campaign-bar">
+  🎗️ World Cancer Day Campaign 🎗️
+</div>
+
+<div class="spotmas-logo">
+  <a href="https://genesolutions.com/our-test/spot-mas" target="_blank" style="text-decoration: none;">
+    <img src="assets/spotmas-logo.png" alt="SPOT-MAS">
+  </a>
+</div>
+
+<div class="booking-container">
+  <h1>Test Booking Form</h1>
+  <p class="subtitle" id="discountInfo"></p>
+  
+  <!-- Form Section (hidden after submission) -->
+  <form id="bookingForm" style="display: none;">
+    <div class="form-group">
+      <label for="fullName">Full Name *</label>
+      <input type="text" id="fullName" name="fullName" required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="dob">Date of Birth / Age *</label>
+        <input type="text" id="dob" name="dob" placeholder="DD/MM/YYYY or Age" required>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender *</label>
+        <select id="gender" name="gender" required>
+          <option value="">Select</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="contact">Contact Number *</label>
+      <input type="tel" id="contact" name="contact" placeholder="+91" required>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address *</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="city">City/State *</label>
+        <input type="text" id="city" name="city" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pincode">Pincode *</label>
+        <input type="text" id="pincode" name="pincode" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Risk Factors (if any):</label>
+      <div class="checkbox-group">
+        <label class="checkbox-label">
+          <input type="checkbox" name="riskFactors" value="Smoking"> Smoking
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="riskFactors" value="Alcohol"> Alcohol
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="riskFactors" value="Hepatitis B/C"> Hepatitis B/C
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="riskFactors" value="Family history of cancer"> Family history of cancer
+        </label>
+      </div>
+      <input type="text" id="otherRisk" name="otherRisk" placeholder="Others (please specify)">
+    </div>
+
+    <button type="submit" class="submit-btn">SUBMIT</button>
+  </form>
+
+  <!-- Submission Status Section -->
+  <div id="submissionStatus" style="display: none; text-align: center;">
+    <div class="status-icon">✓</div>
+    <h2>Booking Submitted Successfully!</h2>
+    <p class="status-message">Your booking has been submitted. Our team will contact you shortly.</p>
+    <a href="index.html" class="home-btn">Return to Home</a>
+  </div>
+</div>
+
+<script src="booking-script.js"></script>
+</body>
+</html>

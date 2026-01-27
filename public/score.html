@@ -1,0 +1,15 @@
+<script>
+  let score = localStorage.getItem("score");
+  let discount = localStorage.getItem("discount");
+  let code = localStorage.getItem("discountCode");
+
+  document.body.innerHTML += `
+    <h2>Your Score: ${score}/6</h2>
+    <h3>You are eligible for ${discount} discount</h3>
+    <p><b>Your Discount Code:</b></p>
+    <h1 style="color:#b30059">${code}</h1>
+
+    <a href="booking.html">Proceed to Test Booking</a><br><br>
+    <a href="exclusion.html">Read Exclusion Criteria</a>
+  `;
+</script>

@@ -1,0 +1,222 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.top-logo {
+  text-align: center;
+  padding: clamp(1px, 3vw, 1px) 0;
+  /* background: #074056; */
+  width: 100%;
+}
+
+.top-logo img {
+  height: clamp(100px, 12vw, 80px);
+  width: auto;
+  max-width: 100%;
+}
+
+.campaign-bar {
+  background: linear-gradient(to right, #a855c5, #d946b4);
+  color: #fff;
+  padding: clamp(8px, 3vw, 15px);
+  font-size: clamp(14px, 4vw, 20px);
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.exclusion-container {
+  max-width: 800px;
+  margin: clamp(20px, 5vw, 50px) auto;
+  background: #fff;
+  padding: clamp(20px, 5vw, 40px);
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  width: calc(100% - 20px);
+}
+
+h1 {
+  color: #dc2626;
+  text-align: center;
+  margin: 0 0 clamp(20px, 5vw, 30px);
+  font-size: clamp(22px, 6vw, 36px);
+  word-wrap: break-word;
+}
+
+.warning-box {
+  background: #fee2e2;
+  border-left: 4px solid #dc2626;
+  padding: clamp(15px, 3vw, 25px);
+  margin-bottom: clamp(20px, 5vw, 30px);
+  border-radius: 5px;
+}
+
+.warning-box p {
+  margin: 0;
+  color: #991b1b;
+  font-size: clamp(14px, 3.5vw, 16px);
+  line-height: 1.5;
+}
+
+.criteria-list {
+  margin: clamp(20px, 5vw, 30px) 0;
+}
+
+.criteria-item {
+  display: flex;
+  gap: clamp(10px, 3vw, 15px);
+  margin-bottom: clamp(15px, 3vw, 25px);
+  padding: clamp(12px, 3vw, 20px);
+  background: #f9f9f9;
+  border-radius: 5px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.criteria-item:hover {
+  background: #fafafa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.bullet {
+  color: #dc2626;
+  font-size: clamp(20px, 6vw, 28px);
+  font-weight: bold;
+  flex-shrink: 0;
+  min-width: 30px;
+  text-align: center;
+}
+
+.criteria-item p {
+  margin: 0;
+  color: #333;
+  font-size: clamp(13px, 3.5vw, 16px);
+  line-height: 1.6;
+}
+
+.sub-list {
+  margin: clamp(8px, 2vw, 12px) 0 0 0;
+  padding-left: clamp(15px, 4vw, 25px);
+  font-size: clamp(13px, 3.5vw, 15px);
+}
+
+.sub-list li {
+  margin: clamp(6px, 1.5vw, 10px) 0;
+  color: #555;
+}
+
+.button-section {
+  display: flex;
+  gap: clamp(10px, 3vw, 20px);
+  justify-content: center;
+  margin-top: clamp(30px, 5vw, 50px);
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+.spotmas-logo {
+  text-align: center;
+  margin-bottom: clamp(20px, 5vw, 30px);
+}
+
+.spotmas-logo img {
+  height: clamp(60px, 15vw, 90px);
+  width: auto;
+  max-width: 100%;
+}
+
+.close-btn, .proceed-btn {
+  padding: clamp(12px, 3vw, 18px) clamp(25px, 5vw, 50px);
+  border: none;
+  border-radius: 8px;
+  font-size: clamp(14px, 3.5vw, 18px);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.close-btn {
+  background: #6b7280;
+  color: #fff;
+}
+
+.proceed-btn {
+  background: linear-gradient(to right, #a855c5, #d946b4);
+  color: #fff;
+}
+
+.close-btn:hover, .proceed-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.close-btn:active, .proceed-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .exclusion-container {
+    margin: 10px auto;
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .button-section {
+    flex-direction: column;
+    margin-top: 25px;
+  }
+  
+  .close-btn, .proceed-btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .button-section {
+    flex-direction: column;
+  }
+  
+  .close-btn, .proceed-btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  html {
+    font-size: 16px;
+  }
+  
+  .button-section {
+    flex-direction: row;
+  }
+  
+  .close-btn, .proceed-btn {
+    width: auto;
+  }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Results - SPOTMAS</title>
+  <link rel="stylesheet" href="results-style.css">
+</head>
+<body>
+
+<div class="top-logo">
+  <img src="assets/gene-solutions-logo.png" alt="Gene Solutions">
+</div>
+
+<div class="campaign-bar">
+  🎗️ World Cancer Day Campaign 🎗️
+</div>
+
+<div class="spotmas-logo">
+  <a href="https://genesolutions.com/our-test/spot-mas" target="_blank" style="text-decoration: none;">
+    <img src="assets/spotmas-logo.png" alt="SPOT-MAS">
+  </a>
+</div>
+
+<div class="results-container">
+  <div id="resultMessage"></div>
+  
+  <div class="cta-section">
+    <a href="booking.html" class="booking-btn">Click Here - Test Booking Form</a>
+    <p class="note"><strong>Note:</strong> Kindly read <a href="#" onclick="sessionStorage.setItem('fromResults', 'true'); window.location.href='exclusion.html'; return false;" class="link">Exclusion Criteria</a> before booking the test</p>
+  </div>
+</div>
+
+<script>
+  // Get score from sessionStorage
+  const score = parseInt(sessionStorage.getItem('quizScore')) || 0;
+  const resultDiv = document.getElementById('resultMessage');
+  
+  if (score >= 3) {
+    resultDiv.innerHTML = `
+      <div class="score-display">Your Score: ${score}/6</div>
+      <h1 class="congrats">Congratulations! 🎉</h1>
+      <p class="message">You are eligible for <strong class="discount">50% discount</strong> on SPOTMAS test.</p>
+    `;
+    resultDiv.className = 'result-box success';
+  } else {
+    resultDiv.innerHTML = `
+      <div class="score-display">Your Score: ${score}/6</div>
+      <h1 class="thanks">Thank you for participating ☺</h1>
+      <p class="message">Book the test today to avail <strong class="discount">25% discount</strong> on MRP.</p>
+    `;
+    resultDiv.className = 'result-box';
+  }
+  
+  // Store discount for booking page
+  sessionStorage.setItem('discount', score >= 3 ? '50' : '25');
+</script>
+
+</body>
+</html> 

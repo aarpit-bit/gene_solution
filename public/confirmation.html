@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed - SPOTMAS</title>
+  <link rel="stylesheet" href="confirmation-style.css">
+</head>
+<body>
+
+<div class="top-logo">
+  <img src="assets/gene-solutions-logo.png" alt="Gene Solutions">
+</div>
+
+<div class="campaign-bar">
+  🎗️ World Cancer Day Campaign 🎗️
+</div>
+
+<div class="spotmas-logo">
+  <a href="https://genesolutions.com/our-test/spot-mas" target="_blank" style="text-decoration: none;">
+    <img src="assets/spotmas-logo.png" alt="SPOT-MAS">
+  </a>
+</div>
+
+<div class="confirmation-container">
+  <div class="success-icon">✓</div>
+  <h1>Booking Confirmed!</h1>
+  <p class="main-message">Thank you for booking the SPOTMAS test. We have received your details and sent confirmation emails to our team.</p>
+  
+  <div class="success-details">
+    <p>✅ <strong>Email notification sent</strong> to Gene Solutions team</p>
+    <p>✅ <strong>WhatsApp notification sent</strong> to our booking team</p>
+    <p>✅ Your booking is being processed</p>
+  </div>
+  
+  <div class="info-box">
+    <p><strong>What happens next?</strong></p>
+    <p>Our team will contact you within 24-48 hours to schedule your blood sample collection.</p>
+  </div>
+
+  <div class="info-box warning">
+    <p><strong>Important - Please Keep Ready:</strong></p>
+    <ul style="text-align: left; margin: 10px 0;">
+      <li>Consent Form (mandatory)</li>
+      <li>Doctor's Prescription (mandatory)</li>
+    </ul>
+  </div>
+
+  <div class="contact-info">
+    <p><strong>Need immediate assistance?</strong></p>
+    <p>📞 Phone: <a href="tel:+919013275668">+91 90132 75668</a></p>
+    <p>📧 Email: <a href="mailto:infoin@genesolutions.com">infoin@genesolutions.com</a></p>
+  </div>
+
+  <div class="links-section">
+    <h3>Additional Resources</h3>
+    <div class="link-buttons">
+      <a href="https://genesolutions.com/our-test/spot-mas" target="_blank" class="info-link">
+        <span class="icon">📄</span> Learn More About SPOTMAS
+      </a>
+      <a href="consent-form.pdf" target="_blank" class="info-link">
+        <span class="icon">📋</span> Download Consent Form
+      </a>
+    </div>
+  </div>
+
+  <a href="landing.html" class="home-btn">Return to Home</a>
+</div>
+
+<script>
+  // Verify booking was successful
+  const bookingSuccess = sessionStorage.getItem('bookingSuccess');
+  if (!bookingSuccess) {
+    // If accessed directly without completing booking, redirect
+    console.warn('No booking found, redirecting...');
+    // Uncomment to enforce: window.location.href = 'index.html';
+  }
+  
+  // Log booking data (already sent to server)
+  const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
+  console.log('Booking Details (already sent to server):', bookingData);
+  
+  // Clear booking success flag after displaying (optional)
+  // sessionStorage.removeItem('bookingSuccess');
+</script>
+
+</body>
+</html>

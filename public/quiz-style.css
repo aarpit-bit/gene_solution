@@ -1,0 +1,197 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.top-logo {
+  text-align: center;
+  padding: clamp(1px, 3vw, 1px) 0;
+  /* background: #074056; */
+  width: 100%;
+}
+
+.top-logo img {
+  height: clamp(100px, 12vw, 80px);
+  width: auto;
+  max-width: 100%;
+}
+.campaign-bar {
+  background: linear-gradient(to right, #a855c5, #d946b4);
+  color: #fff;
+  padding: clamp(8px, 3vw, 15px);
+  font-size: clamp(14px, 4vw, 20px);
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.quiz-container {
+  max-width: 800px;
+  margin: clamp(20px, 5vw, 50px) auto;
+  background: #fff;
+  padding: clamp(20px, 5vw, 40px);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: calc(100% - 20px);
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  margin: 0 0 clamp(8px, 2vw, 15px);
+  font-size: clamp(20px, 5vw, 28px);
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: clamp(20px, 5vw, 30px);
+  font-size: clamp(14px, 3.5vw, 16px);
+  padding: 0 10px;
+}
+
+.question {
+  margin-bottom: clamp(20px, 5vw, 30px);
+  padding: clamp(15px, 4vw, 25px);
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #a855c5;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.question:focus-within {
+  box-shadow: 0 2px 8px rgba(168, 85, 197, 0.2);
+  background-color: #fafafa;
+}
+
+.q-text {
+  margin-bottom: clamp(12px, 3vw, 18px);
+  color: #333;
+  font-size: clamp(15px, 4vw, 18px);
+  font-weight: 500;
+}
+
+.question label {
+  display: flex;
+  align-items: center;
+  margin: clamp(8px, 2vw, 12px) 0;
+  padding: clamp(8px, 2vw, 12px);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  border-radius: 6px;
+  user-select: none;
+  font-size: clamp(14px, 3.5vw, 16px);
+  gap: 10px;
+}
+
+.question label:hover {
+  background: #fff;
+  transform: translateX(4px);
+}
+
+.question label:active {
+  transform: translateX(2px);
+}
+
+.question input[type=\"radio\"] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  cursor: pointer;
+  accent-color: #a855c5;
+  flex-shrink: 0;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: clamp(25px, 5vw, 40px) auto;
+  padding: clamp(12px, 3vw, 18px);
+  background: linear-gradient(to right, #a855c5, #d946b4);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(168, 85, 197, 0.4);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.disclaimer {
+  margin-top: clamp(20px, 5vw, 30px);
+  padding: clamp(12px, 3vw, 20px);
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+  font-size: clamp(12px, 2.5vw, 14px);
+  color: #856404;
+  line-height: 1.6;
+}
+
+.spotmas-logo {
+  text-align: center;
+  margin-bottom: clamp(20px, 5vw, 30px);
+}
+
+.spotmas-logo img {
+  height: clamp(60px, 15vw, 90px);
+  width: auto;
+  max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .quiz-container {
+    margin: 10px auto;
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .question {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 769px) {
+  html {
+    font-size: 16px;
+  }
+}

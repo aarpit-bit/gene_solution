@@ -1,0 +1,239 @@
+/* ============================= */
+/* 🌐 BASE STYLES */
+/* ============================= */
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================= */
+/* 🧬 TOP LOGO */
+/* ============================= */
+.top-logo {
+  text-align: center;
+  padding: clamp(1px, 3vw, 1px) 0;
+  /* background: #074056; */
+  width: 100%;
+}
+
+.top-logo img {
+  height: clamp(100px, 12vw, 80px);
+  width: auto;
+  max-width: 100%;
+}
+
+
+/* ============================= */
+/* 🎗️ CAMPAIGN BAR */
+/* ============================= */
+.campaign-bar {
+  background: linear-gradient(to right, #a855c5, #d946b4);
+  color: #fff;
+  padding: 8px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ============================= */
+/* 🧱 MAIN CARD */
+/* ============================= */
+.card {
+  max-width: 900px;
+  border: 3px solid #000;
+  margin: 30px auto;
+  padding: 30px 50px;
+  background: #fff;
+  text-align: center;
+}
+
+/* ============================= */
+/* 🧪 SPOTMAS LOGO */
+/* ============================= */
+.spotmas-logo {
+  margin-bottom: 20px;
+}
+
+.spotmas-logo img {
+  height: 65px;
+}
+
+/* ============================= */
+/* 🏷️ TITLE BOX */
+/* ============================= */
+.title-box {
+  border: 3px solid #000;
+  padding: 14px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 auto 30px;
+  line-height: 1.5;
+}
+
+/* ============================= */
+/* 🩺 CANCER GRID (DESKTOP) */
+/* ============================= */
+.cancer-grid {
+  display: grid;
+
+  /* icon | text | icon | text */
+  grid-template-columns: 36px max-content 36px max-content;
+
+  column-gap: 18px;
+  row-gap: 24px;
+
+  /* center the whole grid block */
+  justify-content: center;
+
+  /* shrink to content */
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Icon column */
+.icon {
+  height: 34px;
+  justify-self: start;
+}
+
+/* Text column */
+.label {
+  color: #e10098;
+  font-size: 18px;
+  font-weight: bold;
+
+  text-align: left;
+  justify-self: start;
+  align-self: center;
+}
+
+/* ============================= */
+/* 🟦 INFO BOX */
+/* ============================= */
+.info-box {
+  background: #4a3aff;
+  color: white;
+  padding: 25px 40px;
+  max-width: 900px;
+  margin: 25px auto;
+  font-size: 15px;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+/* ============================= */
+/* 👉 CTA SECTION */
+/* ============================= */
+.cta {
+  text-align: center;
+  margin: 30px 0 40px;
+  font-size: 20px;
+}
+
+.cta a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cta strong {
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.cta .promo {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+  text-shadow:
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 30px #e60073,
+    0 0 40px #e60073;
+}
+
+/* ============================= */
+/* 📱 MOBILE – FULLY ZOOMED */
+/* ============================= */
+@media (max-width: 768px) {
+
+  body {
+    font-size: 18px; /* global zoom effect (SAFE) */
+  }
+
+  /* Top logo */
+  /* .top-logo img {
+    height: 140px;
+  } */
+
+  /* Campaign bar */
+  .campaign-bar {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  /* Card fills screen */
+  .card {
+    max-width: 100%;
+    margin: 15px;
+    padding: 25px 20px;
+  }
+
+  /* SPOTMAS logo */
+  .spotmas-logo img {
+    height: 65px;
+  }
+
+  /* Title */
+  .title-box {
+    font-size: 18px;
+    padding: 15px;
+    line-height: 1.5;
+  }
+
+  /* 🔥 CANCER GRID → SINGLE COLUMN, BIG */
+  .cancer-grid {
+    grid-template-columns: 36px 1fr; /* icon | text */
+    row-gap: 22px;
+    column-gap: 16px;
+
+    width: 100%;
+    justify-content: start;
+  }
+
+  .icon {
+    height: 34px;
+  }
+
+  .label {
+    font-size: 18px;
+  }
+
+  /* Info box */
+  .info-box {
+    max-width: 100%;
+    margin: 20px 15px;
+    padding: 22px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .cta {
+    font-size: 20px;
+    margin: 25px 10px 40px;
+  }
+
+  .cta strong {
+    font-size: 22px;
+  }
+
+  .cta .promo {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}

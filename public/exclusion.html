@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exclusion Criteria - SPOTMAS</title>
+  <link rel="stylesheet" href="exclusion-style.css">
+</head>
+<body>
+
+<div class="top-logo">
+  <img src="assets/gene-solutions-logo.png" alt="Gene Solutions">
+</div>
+
+<div class="campaign-bar">
+  🎗️ World Cancer Day Campaign 🎗️
+</div>
+
+<div class="exclusion-container">
+  <h1>Exclusion Criteria</h1>
+  
+  <div class="warning-box">
+    <p><strong>SPOTMAS test is a screening test & this test SHOULD NOT be performed on the following individuals:</strong></p>
+  </div>
+
+  <div class="criteria-list">
+    <div class="criteria-item">
+      <span class="bullet">•</span>
+      <p>Individuals who have been diagnosed with cancer in the last 5 years.</p>
+    </div>
+
+    <div class="criteria-item">
+      <span class="bullet">•</span>
+      <div>
+        <p>Individuals who have highly suspected signs of cancer:</p>
+        <ul class="sub-list">
+          <li>Have breast/lung/liver lesions with BI-RADS/LUNG-RADS/LI-RADS ≥ 4</li>
+          <li>Have polyps ≥ 1cm or warts/ulcers suspected of malignancy through digestive endoscopy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="criteria-item">
+      <span class="bullet">•</span>
+      <p>Individuals who are pregnant</p>
+    </div>
+
+    <div class="criteria-item">
+      <span class="bullet">•</span>
+      <p>Individuals with a history of bone marrow transplant or whole blood transfusion (within 3 months)</p>
+    </div>
+
+    <div class="criteria-item">
+      <span class="bullet">•</span>
+      <p>Patients with signs and symptoms of cancer should NOT perform this screening test.</p>
+    </div>
+
+    <div class="criteria-item">
+      <span class="bullet">•</span>
+      <p>Consult with your doctor to perform an appropriate cancer diagnostic test.</p>
+    </div>
+  </div>
+
+  <div class="button-section">
+    <!-- <button onclick="window.close()" class="close-btn">Close</button> -->
+    <a href="index.html" class="proceed-btn" id="actionBtn">Go to Quiz</a>
+  </div>
+</div>
+
+<script>
+  // Check if coming from results page (passed score)
+  const fromResults = sessionStorage.getItem('fromResults');
+  const actionBtn = document.getElementById('actionBtn');
+  
+  if (fromResults) {
+    // Coming from results page - show booking button
+    actionBtn.textContent = 'Proceed to Booking';
+    actionBtn.href = 'booking.html';
+    // Clear the flag
+    sessionStorage.removeItem('fromResults');
+  } else {
+    // Direct access or from T&C - show quiz button
+    actionBtn.textContent = 'Go to Quiz';
+    actionBtn.href = 'index.html';
+  }
+</script>
+
+</body>
+</html>
