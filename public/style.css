@@ -14,7 +14,7 @@ body {
 .top-logo {
   text-align: center;
   padding: clamp(1px, 3vw, 1px) 0;
-  /* background: #074056; */
+  background: #074056;
   width: 100%;
 }
 
