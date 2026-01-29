@@ -39,16 +39,15 @@ body {
 /* ============================= */
 .top-logo {
   text-align: center;
-  padding: 20px 0 15px;
-  background: #fff;
-  box-shadow: var(--shadow-sm);
+  padding: clamp(1px, 3vw, 1px) 0;
+  background: #074056;
+  width: 100%;
 }
 
 .top-logo img {
-  height: clamp(70px, 10vw, 90px);
+  height: clamp(100px, 12vw, 80px);
   width: auto;
   max-width: 100%;
-  transition: transform 0.3s ease;
 }
 
 .top-logo img:hover {
