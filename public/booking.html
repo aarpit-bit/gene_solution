@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test Booking Form - SPOTMAS</title>
   <link rel="stylesheet" href="booking-style.css">
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -31,77 +30,240 @@
   <p class="subtitle" id="discountInfo"></p>
   
   <!-- Form Section (hidden after submission) -->
-  <form id="bookingForm" style="display: none;">
+  <form id="bookingForm" style="display: none;" novalidate>
+    
+    <!-- Personal Information Section -->
+    <div class="section-header">
+      <span class="section-icon">👤</span>
+      <h3>Personal Information</h3>
+    </div>
+
     <div class="form-group">
-      <label for="fullName">Full Name *</label>
-      <input type="text" id="fullName" name="fullName" required>
+      <label for="fullName">
+        Full Name <span class="required">*</span>
+      </label>
+      <input 
+        type="text" 
+        id="fullName" 
+        name="fullName" 
+        placeholder="Enter your full name"
+        required
+        minlength="3"
+        pattern="[A-Za-z\s]+"
+      >
+      <span class="error-message" id="fullName-error"></span>
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <label for="dob">Date of Birth / Age *</label>
-        <input type="text" id="dob" name="dob" placeholder="DD/MM/YYYY or Age" required>
+        <label for="dob">
+          Date of Birth <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="dob" 
+          name="dob" 
+          placeholder="DD/MM/YYYY"
+          required
+          pattern="\d{2}/\d{2}/\d{4}"
+          maxlength="10"
+        >
+        <span class="error-message" id="dob-error"></span>
+        <span class="field-hint">Format: DD/MM/YYYY (e.g., 15/01/1990)</span>
       </div>
 
       <div class="form-group">
-        <label for="gender">Gender *</label>
+        <label for="age">
+          OR Age <span class="text-muted">(optional)</span>
+        </label>
+        <input 
+          type="number" 
+          id="age" 
+          name="age" 
+          placeholder="Enter age"
+          min="1"
+          max="120"
+        >
+        <span class="error-message" id="age-error"></span>
+        <span class="field-hint">Enter age if DOB unknown</span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="gender">
+          Gender <span class="required">*</span>
+        </label>
         <select id="gender" name="gender" required>
-          <option value="">Select</option>
-          <option value="M">Male</option>
-          <option value="F">Female</option>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
         </select>
+        <span class="error-message" id="gender-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="country">
+          Country <span class="required">*</span>
+        </label>
+        <select id="country" name="country" required disabled>
+          <option value="India">India 🇮🇳</option>
+        </select>
+        <span class="field-hint">Currently available in India only</span>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="contact">Contact Number *</label>
-      <input type="tel" id="contact" name="contact" placeholder="+91" required>
+    <!-- Contact Information Section -->
+    <div class="section-header">
+      <span class="section-icon">📞</span>
+      <h3>Contact Information</h3>
     </div>
 
     <div class="form-group">
-      <label for="address">Address *</label>
-      <textarea id="address" name="address" rows="3" required></textarea>
+      <label for="contact">
+        Mobile Number <span class="required">*</span>
+      </label>
+      <div class="phone-input-group">
+        <span class="country-code">+91</span>
+        <input 
+          type="tel" 
+          id="contact" 
+          name="contact" 
+          placeholder="Enter 10-digit mobile number"
+          required
+          pattern="[6-9]\d{9}"
+          maxlength="10"
+        >
+      </div>
+      <span class="error-message" id="contact-error"></span>
+      <span class="field-hint">Must start with 6, 7, 8, or 9 (10 digits)</span>
+    </div>
+
+    <!-- Address Section -->
+    <div class="section-header">
+      <span class="section-icon">📍</span>
+      <h3>Address Details</h3>
+    </div>
+
+    <div class="form-group">
+      <label for="address">
+        Street Address <span class="required">*</span>
+      </label>
+      <textarea 
+        id="address" 
+        name="address" 
+        rows="3" 
+        placeholder="Enter your complete address"
+        required
+        minlength="10"
+      ></textarea>
+      <span class="error-message" id="address-error"></span>
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <label for="city">City/State *</label>
-        <input type="text" id="city" name="city" required>
+        <label for="city">
+          City/State <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="city" 
+          name="city" 
+          placeholder="e.g., Mumbai, Maharashtra"
+          required
+          minlength="3"
+        >
+        <span class="error-message" id="city-error"></span>
       </div>
 
       <div class="form-group">
-        <label for="pincode">Pincode *</label>
-        <input type="text" id="pincode" name="pincode" required>
+        <label for="pincode">
+          Pincode <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="pincode" 
+          name="pincode" 
+          placeholder="6-digit pincode"
+          required
+          pattern="\d{6}"
+          maxlength="6"
+        >
+        <span class="error-message" id="pincode-error"></span>
       </div>
     </div>
 
+    <!-- Risk Factors Section -->
+    <div class="section-header">
+      <span class="section-icon">⚕️</span>
+      <h3>Medical Information</h3>
+    </div>
+
     <div class="form-group">
-      <label>Risk Factors (if any):</label>
+      <label>Risk Factors <span class="text-muted">(if any)</span>:</label>
       <div class="checkbox-group">
         <label class="checkbox-label">
-          <input type="checkbox" name="riskFactors" value="Smoking"> Smoking
+          <input type="checkbox" name="riskFactors" value="Smoking">
+          <span class="checkmark"></span>
+          Smoking
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" name="riskFactors" value="Alcohol"> Alcohol
+          <input type="checkbox" name="riskFactors" value="Alcohol">
+          <span class="checkmark"></span>
+          Alcohol
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" name="riskFactors" value="Hepatitis B/C"> Hepatitis B/C
+          <input type="checkbox" name="riskFactors" value="Hepatitis B/C">
+          <span class="checkmark"></span>
+          Hepatitis B/C
         </label>
         <label class="checkbox-label">
-          <input type="checkbox" name="riskFactors" value="Family history of cancer"> Family history of cancer
+          <input type="checkbox" name="riskFactors" value="Family history of cancer">
+          <span class="checkmark"></span>
+          Family history of cancer
         </label>
       </div>
-      <input type="text" id="otherRisk" name="otherRisk" placeholder="Others (please specify)">
+      <input 
+        type="text" 
+        id="otherRisk" 
+        name="otherRisk" 
+        placeholder="Others (please specify)"
+        class="other-input"
+      >
     </div>
 
-    <button type="submit" class="submit-btn">SUBMIT</button>
+    <!-- Important Information Box -->
+    <div class="info-box">
+      <div class="info-icon">ℹ️</div>
+      <div class="info-content">
+        <strong>Important:</strong> Please keep the following documents ready during sample collection:
+        <ul>
+          <li>Signed Consent Form</li>
+          <li>Doctor's Prescription</li>
+        </ul>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">
+      <span class="btn-text">SUBMIT BOOKING</span>
+      <span class="btn-icon">→</span>
+    </button>
   </form>
 
   <!-- Submission Status Section -->
   <div id="submissionStatus" style="display: none; text-align: center;">
     <div class="status-icon">✓</div>
     <h2>Booking Submitted Successfully!</h2>
-    <p class="status-message">Your booking has been submitted. Our team will contact you shortly.</p>
+    <p class="status-message">
+      Thank you for booking! You will receive a confirmation SMS shortly.<br>
+      Our team will contact you to schedule the sample collection.
+    </p>
+    <div class="contact-info">
+      <p><strong>Need immediate assistance?</strong></p>
+      <p>📞 <a href="tel:+919013275668">+91 90132 75668</a></p>
+      <p>📧 <a href="mailto:infoin@genesolutions.com">infoin@genesolutions.com</a></p>
+    </div>
     <a href="index.html" class="home-btn">Return to Home</a>
   </div>
 </div>
