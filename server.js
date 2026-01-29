@@ -44,13 +44,19 @@ app.post('/api/submit-booking', async (req, res) => {
     
     console.log('Processing booking for:', bookingData.fullName);
     
-    // Send Email
+    // Send Email (Required - must succeed)
     const emailResult = await sendEmail(bookingData);
     console.log('✅ Email sent successfully');
     
-    // Send WhatsApp
-    const whatsappResult = await sendWhatsApp(bookingData);
-    console.log('✅ WhatsApp sent successfully');
+    // Send WhatsApp (Optional - failure won't affect overall success)
+    let whatsappResult = null;
+    try {
+      whatsappResult = await sendWhatsApp(bookingData);
+      console.log('✅ WhatsApp sent successfully');
+    } catch (whatsappError) {
+      console.warn('⚠️ WhatsApp sending failed (optional):', whatsappError.message);
+      whatsappResult = { status: 'failed', error: whatsappError.message };
+    }
     
     res.json({
       success: true,
@@ -275,14 +281,14 @@ app.get('/api/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`
-╔════════════════════════════════════════════════════════╗
-║   SPOTMAS Booking System Server                        ║
-║   World Cancer Day Campaign                            ║
-╠════════════════════════════════════════════════════════╣
-║   Status: RUNNING                                      ║
-║   Port: ${PORT}                                           ║
-║   Health Check: http://localhost:${PORT}/api/health      ║
+╔═════════════════════════════════════════════════════════════╗
+║   SPOTMAS Booking System Server                             ║
+║   World Cancer Day Campaign                                 ║
+╠═════════════════════════════════════════════════════════════╣
+║   Status: RUNNING                                           ║
+║   Port: ${PORT}                                             ║
+║   Health Check: http://localhost:${PORT}/api/health         ║
 ║   API Endpoint: http://localhost:${PORT}/api/submit-booking ║
-╚════════════════════════════════════════════════════════╝
+╚═════════════════════════════════════════════════════════════╝
   `);
 });
