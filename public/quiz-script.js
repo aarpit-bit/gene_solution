@@ -145,13 +145,9 @@ function showResults(score) {
   const scoreMessage = document.getElementById('scoreMessage');
   let message = '';
   
-  if (score === 6) {
-    message = '🎉 Perfect Score! You have excellent cancer awareness. You qualify for 50% discount on SPOTMAS test!';
-  } else if (score >= 4) {
-    message = '👏 Great job! You have good knowledge about cancer detection. You qualify for 40% discount!';
-  } else if (score >= 2) {
-    message = '✅ Good effort! You qualify for 30% discount on SPOTMAS test.';
-  } else {
+  if (score >= 3) {
+    message = '🎉 You have excellent cancer awareness. You qualify for 50% discount on SPOTMAS test!';
+  }else {
     message = '📚 Thank you for participating! You qualify for 25% discount. Continue learning about cancer awareness!';
   }
   
