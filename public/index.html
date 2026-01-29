@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPOTMAS Quiz - World Cancer Day</title>
   <link rel="stylesheet" href="quiz-style.css">
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -19,7 +18,6 @@
 <div class="campaign-bar">
   🎗️ World Cancer Day Campaign 🎗️
 </div>
-
 
 <div class="spotmas-logo">
   <a href="https://genesolutions.com/our-test/spot-mas" target="_blank" style="text-decoration: none;">
@@ -33,60 +31,174 @@
   
   <form id="quizForm">
     <!-- Question 1 -->
-    <div class="question">
+    <div class="question" data-question="q1">
       <p class="q-text"><strong>1. Why is early cancer detection clinically important?</strong></p>
-      <label><input type="radio" name="q1" value="A"> A. It reduces the need for diagnosis</label>
-      <label><input type="radio" name="q1" value="B"> B. It improves treatment outcomes and survival rates</label>
-      <label><input type="radio" name="q1" value="C"> C. It eliminates the need for follow-up</label>
-      <label><input type="radio" name="q1" value="D"> D. It delays treatment decisions</label>
+      <label class="option-label">
+        <input type="radio" name="q1" value="A">
+        <span class="option-text">A. It reduces the need for diagnosis</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q1" value="B">
+        <span class="option-text">B. It improves treatment outcomes and survival rates</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q1" value="C">
+        <span class="option-text">C. It eliminates the need for follow-up</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q1" value="D">
+        <span class="option-text">D. It delays treatment decisions</span>
+        <span class="feedback-icon"></span>
+      </label>
     </div>
 
     <!-- Question 2 -->
-    <div class="question">
+    <div class="question" data-question="q2">
       <p class="q-text"><strong>2. What is SPOT-MAS?</strong></p>
-      <label><input type="radio" name="q2" value="A"> A. A surgery for cancer treatment</label>
-      <label><input type="radio" name="q2" value="B"> B. A blood test that looks for early signs of cancer</label>
-      <label><input type="radio" name="q2" value="C"> C. An X-ray test</label>
-      <label><input type="radio" name="q2" value="D"> D. A medicine for cancer</label>
+      <label class="option-label">
+        <input type="radio" name="q2" value="A">
+        <span class="option-text">A. A surgery for cancer treatment</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q2" value="B">
+        <span class="option-text">B. A blood test that looks for early signs of cancer</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q2" value="C">
+        <span class="option-text">C. An X-ray test</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q2" value="D">
+        <span class="option-text">D. A medicine for cancer</span>
+        <span class="feedback-icon"></span>
+      </label>
     </div>
 
     <!-- Question 3 -->
-    <div class="question">
+    <div class="question" data-question="q3">
       <p class="q-text"><strong>3. What is a major advantage of blood-based cancer testing?</strong></p>
-      <label><input type="radio" name="q3" value="A"> A. Requires hospitalization</label>
-      <label><input type="radio" name="q3" value="B"> B. Can be repeated over time for monitoring</label>
-      <label><input type="radio" name="q3" value="C"> C. Detects only late-stage cancers</label>
-      <label><input type="radio" name="q3" value="D"> D. Used only after surgery</label>
+      <label class="option-label">
+        <input type="radio" name="q3" value="A">
+        <span class="option-text">A. Requires hospitalization</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q3" value="B">
+        <span class="option-text">B. Can be repeated over time for monitoring</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q3" value="C">
+        <span class="option-text">C. Detects only late-stage cancers</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q3" value="D">
+        <span class="option-text">D. Used only after surgery</span>
+        <span class="feedback-icon"></span>
+      </label>
     </div>
 
     <!-- Question 4 -->
-    <div class="question">
+    <div class="question" data-question="q4">
       <p class="q-text"><strong>4. How many blood draws are required to perform the SPOT-MAS test?</strong></p>
-      <label><input type="radio" name="q4" value="A"> A. Multiple blood draws over time</label>
-      <label><input type="radio" name="q4" value="B"> B. One blood draw</label>
-      <label><input type="radio" name="q4" value="C"> C. One blood draw per cancer type</label>
-      <label><input type="radio" name="q4" value="D"> D. Blood draw after imaging confirmation</label>
+      <label class="option-label">
+        <input type="radio" name="q4" value="A">
+        <span class="option-text">A. Multiple blood draws over time</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q4" value="B">
+        <span class="option-text">B. One blood draw</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q4" value="C">
+        <span class="option-text">C. One blood draw per cancer type</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q4" value="D">
+        <span class="option-text">D. Blood draw after imaging confirmation</span>
+        <span class="feedback-icon"></span>
+      </label>
     </div>
 
     <!-- Question 5 -->
-    <div class="question">
+    <div class="question" data-question="q5">
       <p class="q-text"><strong>5. SPOT-MAS is capable of detecting signals of how many common cancers simultaneously?</strong></p>
-      <label><input type="radio" name="q5" value="A"> A. 5</label>
-      <label><input type="radio" name="q5" value="B"> B. 8</label>
-      <label><input type="radio" name="q5" value="C"> C. 10</label>
-      <label><input type="radio" name="q5" value="D"> D. 15</label>
+      <label class="option-label">
+        <input type="radio" name="q5" value="A">
+        <span class="option-text">A. 5</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q5" value="B">
+        <span class="option-text">B. 8</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q5" value="C">
+        <span class="option-text">C. 10</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q5" value="D">
+        <span class="option-text">D. 15</span>
+        <span class="feedback-icon"></span>
+      </label>
     </div>
 
     <!-- Question 6 -->
-    <div class="question">
+    <div class="question" data-question="q6">
       <p class="q-text"><strong>6. SPOT-MAS can detect cancer signals even when:</strong></p>
-      <label><input type="radio" name="q6" value="A"> A. Symptoms are already severe</label>
-      <label><input type="radio" name="q6" value="B"> B. Surgery has been done</label>
-      <label><input type="radio" name="q6" value="C"> C. There are no symptoms yet</label>
-      <label><input type="radio" name="q6" value="D"> D. Treatment is complete</label>
+      <label class="option-label">
+        <input type="radio" name="q6" value="A">
+        <span class="option-text">A. Symptoms are already severe</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q6" value="B">
+        <span class="option-text">B. Surgery has been done</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q6" value="C">
+        <span class="option-text">C. There are no symptoms yet</span>
+        <span class="feedback-icon"></span>
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q6" value="D">
+        <span class="option-text">D. Treatment is complete</span>
+        <span class="feedback-icon"></span>
+      </label>
     </div>
 
-    <button type="submit" class="submit-btn">Submit Quiz</button>
+    <button type="submit" class="submit-btn" id="submitBtn">
+      <span class="btn-text">Submit Quiz</span>
+      <span class="btn-icon">→</span>
+    </button>
+
+    <!-- Results Summary (hidden initially) -->
+    <div id="resultsSummary" style="display: none;">
+      <div class="results-box">
+        <div class="score-display">
+          <div class="score-number" id="scoreNumber">0</div>
+          <div class="score-total">out of 6</div>
+        </div>
+        <p class="score-message" id="scoreMessage"></p>
+        <button type="button" class="proceed-btn" id="proceedBtn">
+          <span>Proceed to Booking</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
   </form>
 
   <div class="disclaimer">
