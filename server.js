@@ -48,13 +48,17 @@ app.post('/api/submit-booking', async (req, res) => {
     const emailResult = await sendEmail(bookingData);
     console.log('✅ Email sent successfully');
     
-    // Send WhatsApp (Optional - failure won't affect overall success)
+    // Send SMS to customer (Required - must succeed)
+    const smsResult = await sendSMSToCustomer(bookingData);
+    console.log('✅ SMS sent to customer successfully');
+    
+    // Send WhatsApp to admin (Optional - failure won't affect overall success)
     let whatsappResult = null;
     try {
-      whatsappResult = await sendWhatsApp(bookingData);
-      console.log('✅ WhatsApp sent successfully');
+      whatsappResult = await sendWhatsAppToAdmin(bookingData);
+      console.log('✅ Admin WhatsApp sent successfully');
     } catch (whatsappError) {
-      console.warn('⚠️ WhatsApp sending failed (optional):', whatsappError.message);
+      console.warn('⚠️ Admin WhatsApp sending failed (optional):', whatsappError.message);
       whatsappResult = { status: 'failed', error: whatsappError.message };
     }
     
@@ -62,6 +66,7 @@ app.post('/api/submit-booking', async (req, res) => {
       success: true,
       message: 'Booking submitted successfully',
       email: emailResult,
+      sms: smsResult,
       whatsapp: whatsappResult
     });
     
@@ -232,8 +237,8 @@ async function sendEmail(data) {
   return { messageId: info.messageId, status: 'sent' };
 }
 
-// Function to send WhatsApp using Twilio
-async function sendWhatsApp(data) {
+// Function to send WhatsApp to admin using Twilio
+async function sendWhatsAppToAdmin(data) {
   const message = `*🎗️ SPOTMAS Test Booking*
 *World Cancer Day Campaign*
 
@@ -269,6 +274,61 @@ _Automated - ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
   return { messageSid: whatsappMessage.sid, status: 'sent' };
 }
 
+// Function to send SMS confirmation to customer
+async function sendSMSToCustomer(data) {
+  // Format the customer's phone number for SMS
+  // Assuming Indian numbers - adjust country code as needed
+  let customerNumber = data.contact.trim();
+  
+  // Remove any spaces, dashes, or special characters
+  customerNumber = customerNumber.replace(/[\s\-\(\)]/g, '');
+  
+  // Add country code if not present
+  if (!customerNumber.startsWith('+')) {
+    if (customerNumber.startsWith('91')) {
+      customerNumber = '+' + customerNumber;
+    } else if (customerNumber.startsWith('0')) {
+      customerNumber = '+91' + customerNumber.substring(1);
+    } else {
+      customerNumber = '+91' + customerNumber;
+    }
+  }
+  
+  const message = `SPOTMAS Test Booking Confirmed!
+
+Dear ${data.fullName},
+
+Thank you for booking with us for World Cancer Day Campaign.
+
+Booking Details:
+- Name: ${data.fullName}
+- DOB/Age: ${data.dob}
+- Discount: ${data.discount}
+
+Our team will contact you soon to schedule sample collection.
+
+Please keep ready:
+- Signed Consent Form
+- Doctor's Prescription
+
+Contact: +91 90132 75668
+Email: infoin@genesolutions.com
+
+- Gene Solutions India`;
+
+  const smsMessage = await twilioClient.messages.create({
+    from: process.env.TWILIO_PHONE_NUMBER, // Your Twilio phone number for SMS
+    to: customerNumber,
+    body: message
+  });
+  
+  return { 
+    messageSid: smsMessage.sid, 
+    status: 'sent',
+    sentTo: customerNumber
+  };
+}
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ 
@@ -286,9 +346,9 @@ app.listen(PORT, () => {
 ║   World Cancer Day Campaign                                 ║
 ╠═════════════════════════════════════════════════════════════╣
 ║   Status: RUNNING                                           ║
-║   Port: ${PORT}                                             ║
-║   Health Check: http://localhost:${PORT}/api/health         ║
-║   API Endpoint: http://localhost:${PORT}/api/submit-booking ║
+║   Port: ${PORT}                                                ║
+║   Health Check: http://localhost:${PORT}/api/health            ║
+║   API Endpoint: http://localhost:${PORT}/api/submit-booking    ║
 ╚═════════════════════════════════════════════════════════════╝
   `);
 });
