@@ -1,15 +1,26 @@
 /* ============================= */
-/* 🌐 BASE STYLES */
+/* 🌐 BASE STYLES + PAGE BACKGROUND */
 /* ============================= */
 body {
   font-family: Arial, sans-serif;
-  background: #ffffff;
   margin: 0;
   padding: 0;
+
+  /* Soft biotech background like SPOT-MAS */
+  background: radial-gradient(
+    circle at top center,
+    #f8f0fc 0%,
+    #e8daf8 35%,
+    #e1e5fb 65%,
+    #eef5ff 100%
+  );
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* ============================= */
-/* 🧬 TOP LOGO */
+/* 🧬 TOP LOGO (UNCHANGED) */
 /* ============================= */
 .top-logo {
   text-align: center;
@@ -24,14 +35,18 @@ body {
   max-width: 100%;
 }
 
-
 /* ============================= */
 /* 🎗️ CAMPAIGN BAR */
 /* ============================= */
 .campaign-bar {
-  background: linear-gradient(to right, #a855c5, #d946b4);
+  background: linear-gradient(
+    90deg,
+    #7b2ff7,
+    #b620e0,
+    #f83d8e
+  );
   color: #fff;
-  padding: 8px;
+  padding: 10px;
   font-size: 22px;
   font-weight: bold;
   text-align: center;
@@ -41,12 +56,19 @@ body {
 /* 🧱 MAIN CARD */
 /* ============================= */
 .card {
+  position: relative;
   max-width: 900px;
-  border: 3px solid #000;
   margin: 30px auto;
   padding: 30px 50px;
-  background: #fff;
+
+  background: #ffffff;
+  border: 3px solid #000;
   text-align: center;
+
+  /* Soft glow behind card */
+  box-shadow:
+    0 10px 30px rgba(123,47,247,0.15),
+    0 0 0 1px rgba(255,255,255,0.6);
 }
 
 /* ============================= */
@@ -70,6 +92,7 @@ body {
   font-weight: bold;
   margin: 0 auto 30px;
   line-height: 1.5;
+  background: #fff;
 }
 
 /* ============================= */
@@ -84,10 +107,7 @@ body {
   column-gap: 18px;
   row-gap: 24px;
 
-  /* center the whole grid block */
   justify-content: center;
-
-  /* shrink to content */
   width: fit-content;
   margin: 0 auto;
 }
@@ -103,7 +123,6 @@ body {
   color: #e10098;
   font-size: 18px;
   font-weight: bold;
-
   text-align: left;
   justify-self: start;
   align-self: center;
@@ -113,14 +132,24 @@ body {
 /* 🟦 INFO BOX */
 /* ============================= */
 .info-box {
-  background: #4a3aff;
-  color: white;
-  padding: 25px 40px;
   max-width: 900px;
   margin: 25px auto;
+
+  padding: 25px 40px;
   font-size: 15px;
   line-height: 1.7;
   text-align: justify;
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #4a3aff,
+    #7b2ff7,
+    #b620e0
+  );
+
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(74,58,255,0.25);
 }
 
 /* ============================= */
@@ -149,58 +178,47 @@ body {
   font-size: 22px;
   font-weight: bold;
   color: #000;
+
+  /* subtle glow only */
   text-shadow:
-    0 0 10px #fff,
-    0 0 20px #fff,
-    0 0 30px #e60073,
-    0 0 40px #e60073;
+    0 0 10px rgba(255,255,255,0.6),
+    0 0 20px rgba(248,61,142,0.4);
 }
 
 /* ============================= */
-/* 📱 MOBILE – FULLY ZOOMED */
+/* 📱 MOBILE – BIG & READABLE */
 /* ============================= */
 @media (max-width: 768px) {
 
   body {
-    font-size: 18px; /* global zoom effect (SAFE) */
+    font-size: 18px;
   }
 
-  /* Top logo */
-  /* .top-logo img {
-    height: 140px;
-  } */
-
-  /* Campaign bar */
   .campaign-bar {
     font-size: 20px;
     padding: 10px;
   }
 
-  /* Card fills screen */
   .card {
     max-width: 100%;
     margin: 15px;
     padding: 25px 20px;
   }
 
-  /* SPOTMAS logo */
   .spotmas-logo img {
     height: 65px;
   }
 
-  /* Title */
   .title-box {
     font-size: 18px;
     padding: 15px;
-    line-height: 1.5;
   }
 
-  /* 🔥 CANCER GRID → SINGLE COLUMN, BIG */
+  /* Cancer grid → single column */
   .cancer-grid {
-    grid-template-columns: 36px 1fr; /* icon | text */
+    grid-template-columns: 36px 1fr;
     row-gap: 22px;
     column-gap: 16px;
-
     width: 100%;
     justify-content: start;
   }
@@ -213,7 +231,6 @@ body {
     font-size: 18px;
   }
 
-  /* Info box */
   .info-box {
     max-width: 100%;
     margin: 20px 15px;
@@ -222,7 +239,6 @@ body {
     line-height: 1.7;
   }
 
-  /* CTA */
   .cta {
     font-size: 20px;
     margin: 25px 10px 40px;
