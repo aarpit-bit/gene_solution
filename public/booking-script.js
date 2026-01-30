@@ -34,6 +34,10 @@ const validation = {
   city: {
     minLength: 3,
     message: 'City/State must be at least 3 characters'
+  },
+  terms: {
+    required: true,
+    message: 'You must agree to the Terms & Conditions to proceed'
   }
 };
 
@@ -71,6 +75,9 @@ window.addEventListener('DOMContentLoaded', async function() {
   
   // Handle age/DOB relationship
   setupAgeOrDOB();
+  
+  // Handle Terms & Conditions checkbox
+  setupTermsCheckbox();
   
   // Test API connection
   try {
@@ -175,6 +182,22 @@ function setupAgeOrDOB() {
   });
 }
 
+// Terms checkbox handling
+function setupTermsCheckbox() {
+  const termsCheckbox = document.getElementById('termsCheckbox');
+  const termsSection = document.querySelector('.terms-section');
+  const termsError = document.getElementById('terms-error');
+  
+  if (!termsCheckbox || !termsSection) return;
+  
+  termsCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+      termsSection.classList.remove('error');
+      termsError.style.display = 'none';
+    }
+  });
+}
+
 // Validate individual field
 function validateField(field) {
   const fieldId = field.id;
@@ -270,6 +293,21 @@ if (bookingForm) {
         isValid = false;
       }
     });
+    
+    // Validate Terms & Conditions checkbox
+    const termsCheckbox = document.getElementById('termsCheckbox');
+    const termsSection = termsCheckbox.closest('.terms-section');
+    const termsError = document.getElementById('terms-error');
+    
+    if (!termsCheckbox.checked) {
+      termsSection.classList.add('error');
+      termsError.textContent = 'You must agree to the Terms & Conditions to proceed';
+      termsError.style.display = 'block';
+      isValid = false;
+    } else {
+      termsSection.classList.remove('error');
+      termsError.style.display = 'none';
+    }
     
     // Check if either DOB or Age is filled
     const dobValue = document.getElementById('dob').value.trim();
