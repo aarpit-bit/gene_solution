@@ -187,13 +187,69 @@ function setupTermsCheckbox() {
   const termsCheckbox = document.getElementById('termsCheckbox');
   const termsSection = document.querySelector('.terms-section');
   const termsError = document.getElementById('terms-error');
+  const termsLink = document.getElementById('termsLink');
+  const termsModal = document.getElementById('termsModal');
+  const termsClose = document.getElementById('termsClose');
+  const termsAccept = document.getElementById('termsAccept');
+  const termsDecline = document.getElementById('termsDecline');
   
   if (!termsCheckbox || !termsSection) return;
   
+  // Clear error when checkbox is checked
   termsCheckbox.addEventListener('change', function() {
     if (this.checked) {
       termsSection.classList.remove('error');
       termsError.style.display = 'none';
+    }
+  });
+  
+  // Open modal when clicking "Terms & Conditions" link
+  if (termsLink && termsModal) {
+    termsLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      termsModal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    });
+  }
+  
+  // Close modal function
+  const closeModal = () => {
+    termsModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scroll
+  };
+  
+  // Close button
+  if (termsClose) {
+    termsClose.addEventListener('click', closeModal);
+  }
+  
+  // Decline button
+  if (termsDecline) {
+    termsDecline.addEventListener('click', closeModal);
+  }
+  
+  // Accept button - check the checkbox and close modal
+  if (termsAccept) {
+    termsAccept.addEventListener('click', function() {
+      termsCheckbox.checked = true;
+      termsSection.classList.remove('error');
+      termsError.style.display = 'none';
+      closeModal();
+    });
+  }
+  
+  // Close modal when clicking outside
+  termsModal.addEventListener('click', function(e) {
+    if (e.target === termsModal) {
+      closeModal();
+    }
+  });
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && termsModal.classList.contains('active')) {
+      closeModal();
     }
   });
 }
