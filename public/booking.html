@@ -237,9 +237,9 @@
     <div class="info-box">
       <div class="info-icon">ℹ️</div>
       <div class="info-content">
-        <strong>Important:</strong> Please keep the following documents ready during sample collection:
+        <strong>Important:</strong> The following documents required during sample collection:
         <ul>
-          <li>Signed Consent Form</li>
+          <li>Consent Form</li>
           <li>Doctor's Prescription</li>
         </ul>
       </div>
@@ -251,20 +251,35 @@
         <input type="checkbox" id="termsCheckbox" name="terms" required>
         <span class="terms-checkmark"></span>
         <span class="terms-text">
-          I agree to the <span class="terms-link">Terms & Conditions</span> <span class="required">*</span>
+          I agree to the <span class="terms-link" id="termsLink">Terms & Conditions</span> <span class="required">*</span>
         </span>
       </label>
-      <div class="terms-tooltip">
-        <div class="tooltip-header">Terms & Conditions</div>
-        <div class="tooltip-content">
-          <p><strong>1. Data Usage:</strong></p>
-          <p>I understand that Gene Solutions will utilize my personal information for the testing purpose only and will not disclose the same to any third party unless required by laws and regulations.</p>
+      <span class="error-message" id="terms-error"></span>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="terms-modal" id="termsModal">
+      <div class="terms-modal-content">
+        <div class="terms-modal-header">
+          <h2>Terms & Conditions</h2>
+          <button type="button" class="terms-close" id="termsClose">&times;</button>
+        </div>
+        <div class="terms-modal-body">
+          <div class="terms-item">
+            <h3>1. Data Usage</h3>
+            <p>I understand that Gene Solutions will utilize my personal information for the testing purpose only and will not disclose the same to any third party unless required by laws and regulations.</p>
+          </div>
           
-          <p><strong>2. Consent:</strong></p>
-          <p>I hereby consent to Gene Solutions to use my personal information for undergoing the prescribed screening test. I also understand that I can withdraw this authorization at any point in time by notifying Gene Solutions via email: <a href="mailto:infoin@genesolutions.com">infoin@genesolutions.com</a></p>
+          <div class="terms-item">
+            <h3>2. Consent</h3>
+            <p>I hereby consent to Gene Solutions to use my personal information for undergoing the prescribed screening test. I also understand that I can withdraw this authorization at any point in time by notifying Gene Solutions via email: <a href="mailto:infoin@genesolutions.com">infoin@genesolutions.com</a></p>
+          </div>
+        </div>
+        <div class="terms-modal-footer">
+          <button type="button" class="terms-accept-btn" id="termsAccept">I Agree</button>
+          <button type="button" class="terms-decline-btn" id="termsDecline">Close</button>
         </div>
       </div>
-      <span class="error-message" id="terms-error"></span>
     </div>
 
     <button type="submit" class="submit-btn">
