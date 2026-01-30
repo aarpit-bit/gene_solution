@@ -4,10 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test Booking Form - SPOTMAS</title>
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="booking-style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -249,6 +245,28 @@
       </div>
     </div>
 
+    <!-- Terms and Conditions -->
+    <div class="terms-section">
+      <label class="terms-label">
+        <input type="checkbox" id="termsCheckbox" name="terms" required>
+        <span class="terms-checkmark"></span>
+        <span class="terms-text">
+          I agree to the <span class="terms-link">Terms & Conditions</span> <span class="required">*</span>
+        </span>
+      </label>
+      <div class="terms-tooltip">
+        <div class="tooltip-header">Terms & Conditions</div>
+        <div class="tooltip-content">
+          <p><strong>1. Data Usage:</strong></p>
+          <p>I understand that Gene Solutions will utilize my personal information for the testing purpose only and will not disclose the same to any third party unless required by laws and regulations.</p>
+          
+          <p><strong>2. Consent:</strong></p>
+          <p>I hereby consent to Gene Solutions to use my personal information for undergoing the prescribed screening test. I also understand that I can withdraw this authorization at any point in time by notifying Gene Solutions via email: <a href="mailto:infoin@genesolutions.com">infoin@genesolutions.com</a></p>
+        </div>
+      </div>
+      <span class="error-message" id="terms-error"></span>
+    </div>
+
     <button type="submit" class="submit-btn">
       <span class="btn-text">SUBMIT BOOKING</span>
       <span class="btn-icon">→</span>
@@ -268,7 +286,7 @@
       <p>📞 <a href="tel:+919013275668">+91 90132 75668</a></p>
       <p>📧 <a href="mailto:infoin@genesolutions.com">infoin@genesolutions.com</a></p>
     </div>
-    <a href="landing.html" class="home-btn">Return to Home</a>
+    <a href="index.html" class="home-btn">Return to Home</a>
   </div>
 </div>
 
