@@ -1,5 +1,5 @@
 // API Base URL
-const API_BASE_URL = 'https://genesolution.vercel.app';
+const API_BASE_URL = 'https://genesolution.vercel.app'; // Change to production URL when deploying
 let discount = '25'; // Default discount
 
 console.log('📋 Booking script loaded successfully');
@@ -52,9 +52,9 @@ window.addEventListener('DOMContentLoaded', async function() {
   const submissionStatus = document.getElementById('submissionStatus');
   
   if (isAlreadySubmitted) {
-    console.log('✅ Booking already submitted - showing success page');
-    if (bookingForm) bookingForm.style.display = 'none';
-    if (submissionStatus) submissionStatus.style.display = 'block';
+    console.log('🔁 Already submitted, redirecting to confirmation page');
+    window.location.href = 'confirmation.html';
+    return;
   } else {
     console.log('📝 Fresh booking page - showing form');
     if (bookingForm) bookingForm.style.display = 'block';
