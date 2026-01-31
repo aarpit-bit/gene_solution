@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const twilio = require('twilio');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,25 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+// Supabase configuration
+const supabaseUrl = process.env.SUPABASE_URL;
+// Use Service Role Key if available to bypass RLS, otherwise fall back to Anon Key
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+
+console.log('🔍 Checking Supabase configuration...');
+console.log('SUPABASE_URL:', supabaseUrl ? '✅ Set' : '❌ Missing');
+console.log('SUPABASE_ANON_KEY:', process.env.SUPABASE_ANON_KEY ? '✅ Set' : '❌ Missing');
+console.log('SUPABASE_SERVICE_ROLE_KEY:', process.env.SUPABASE_SERVICE_ROLE_KEY ? '✅ Set (RLS Bypass Active)' : '❌ Missing (Using Anon Key - RLS may block inserts)');
+
+if (!supabaseUrl || !supabaseKey) {
+  console.error('❌ ERROR: Supabase credentials are missing in .env file!');
+  console.error('Please add SUPABASE_URL and SUPABASE_ANON_KEY to your .env file');
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+console.log('✅ Supabase client initialized');
 
 // Email configuration with Nodemailer
 const emailTransporter = nodemailer.createTransport({
@@ -42,36 +62,59 @@ app.post('/api/submit-booking', async (req, res) => {
   try {
     const bookingData = req.body;
     
+    console.log('\n========================================');
+    console.log('📨 NEW BOOKING REQUEST RECEIVED');
+    console.log('========================================');
     console.log('Processing booking for:', bookingData.fullName);
+    console.log('Timestamp:', new Date().toISOString());
+    
+    // Store in Supabase (Required - must succeed)
+    console.log('\n1️⃣ STEP 1: Saving to Database...');
+    const dbResult = await saveToDatabase(bookingData);
+    console.log('✅ Database save completed:', dbResult);
     
     // Send Email (Required - must succeed)
+    console.log('\n2️⃣ STEP 2: Sending Email...');
     const emailResult = await sendEmail(bookingData);
-    console.log('✅ Email sent successfully');
+    console.log('✅ Email sent successfully:', emailResult);
     
     // Send SMS to customer (Required - must succeed)
+    console.log('\n3️⃣ STEP 3: Sending SMS to Customer...');
     const smsResult = await sendSMSToCustomer(bookingData);
-    console.log('✅ SMS sent to customer successfully');
+    console.log('✅ SMS sent to customer successfully:', smsResult);
     
     // Send WhatsApp to admin (Optional - failure won't affect overall success)
+    console.log('\n4️⃣ STEP 4: Sending WhatsApp to Admin (optional)...');
     let whatsappResult = null;
     try {
       whatsappResult = await sendWhatsAppToAdmin(bookingData);
-      console.log('✅ Admin WhatsApp sent successfully');
+      console.log('✅ Admin WhatsApp sent successfully:', whatsappResult);
     } catch (whatsappError) {
       console.warn('⚠️ Admin WhatsApp sending failed (optional):', whatsappError.message);
       whatsappResult = { status: 'failed', error: whatsappError.message };
     }
     
+    console.log('\n========================================');
+    console.log('✅ BOOKING COMPLETED SUCCESSFULLY');
+    console.log('========================================\n');
+    
     res.json({
       success: true,
       message: 'Booking submitted successfully',
+      database: dbResult,
       email: emailResult,
       sms: smsResult,
       whatsapp: whatsappResult
     });
     
   } catch (error) {
-    console.error('❌ Error processing booking:', error);
+    console.error('\n========================================');
+    console.error('❌ BOOKING FAILED');
+    console.error('========================================');
+    console.error('Error:', error.message);
+    console.error('Stack:', error.stack);
+    console.error('========================================\n');
+    
     res.status(500).json({
       success: false,
       message: 'Failed to process booking',
@@ -79,6 +122,55 @@ app.post('/api/submit-booking', async (req, res) => {
     });
   }
 });
+
+// Function to save booking data to Supabase
+async function saveToDatabase(data) {
+  console.log('📝 Starting database save...');
+  console.log('📋 Received data:', JSON.stringify(data, null, 2));
+  
+  // Combine risk factors and discount in Medical Information
+  let medicalInfo = data.riskFactors || 'None';
+  if (data.discount) {
+    medicalInfo += ` | Discount: ${data.discount}`;
+  }
+  
+  const bookingRecord = {
+    'Name': data.fullName,
+    'DOB/Age': data.dob, // Store as-is: either "DD/MM/YYYY" or "Age: 35"
+    'Gender': data.gender,
+    'Country': 'India', // Fixed value since form only allows India
+    'Mobile_Number': parseInt(data.contact), // Convert to bigint
+    'Address': data.address,
+    'City/State': data.city,
+    'Pin code': parseInt(data.pincode), // Convert to bigint
+    'Medical Information': medicalInfo // Includes risk factors and discount
+  };
+
+  console.log('💾 Prepared record for database:', JSON.stringify(bookingRecord, null, 2));
+  console.log('🔄 Attempting to insert into table: "Gene solution Form data"');
+
+  const { data: insertedData, error } = await supabase
+    .from('Gene solution Form data')
+    .insert([bookingRecord])
+    .select();
+
+  if (error) {
+    console.error('❌ Supabase insertion error:');
+    console.error('Error code:', error.code);
+    console.error('Error message:', error.message);
+    console.error('Error details:', JSON.stringify(error, null, 2));
+    throw new Error(`Database error: ${error.message}`);
+  }
+
+  console.log('✅ Data successfully inserted into Supabase!');
+  console.log('📊 Inserted record:', JSON.stringify(insertedData, null, 2));
+
+  return { 
+    id: insertedData[0].id,
+    status: 'saved',
+    timestamp: insertedData[0].created_at 
+  };
+}
 
 // Function to send email using Nodemailer
 async function sendEmail(data) {
