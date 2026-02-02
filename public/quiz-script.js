@@ -7,15 +7,12 @@ const correctAnswers = {
   q5: 'C',
   q6: 'C'
 };
-
 console.log('📝 Quiz script loaded successfully');
-
 // Get form elements
 const quizForm = document.getElementById('quizForm');
 const submitBtn = document.getElementById('submitBtn');
 const resultsSummary = document.getElementById('resultsSummary');
 const proceedBtn = document.getElementById('proceedBtn');
-
 // Form submission handler
 if (quizForm) {
   quizForm.addEventListener('submit', function(e) {
@@ -46,7 +43,6 @@ if (quizForm) {
 } else {
   console.error('❌ Quiz form not found!');
 }
-
 // Show alert for unanswered questions
 function showUnansweredAlert(questionNumbers) {
   // Scroll to first unanswered question
@@ -74,7 +70,6 @@ function showUnansweredAlert(questionNumbers) {
   
   alert(`Please answer all questions before submitting.\n\nUnanswered: Question${questionNumbers.length > 1 ? 's' : ''} ${questionNumbers.join(', ')}`);
 }
-
 // Evaluate quiz and show visual feedback
 function evaluateQuiz() {
   let score = 0;
@@ -123,7 +118,6 @@ function evaluateQuiz() {
     }, i * 200); // Stagger the feedback for visual effect
   }
 }
-
 // Show results summary
 function showResults(score) {
   console.log(`✅ Quiz completed! Score: ${score}/6`);
@@ -133,8 +127,14 @@ function showResults(score) {
   
   // Calculate discount based on score
   let discount = 25; // Default
-  if (score >= 3) discount = 50;
-  else if (score < 3) discount = 25;
+  let discountedPrice = 31500;
+  if (score >= 3) {
+    discount = 50;
+    discountedPrice = 21000;
+  } else if (score < 3) {
+    discount = 25;
+    discountedPrice = 31500;
+  }
   
   sessionStorage.setItem('discount', discount);
   
@@ -144,14 +144,17 @@ function showResults(score) {
   // Customize message based on score
   const scoreMessage = document.getElementById('scoreMessage');
   let message = '';
+  let priceHTML = '';
   
   if (score >= 3) {
     message = '🎉 You have excellent cancer awareness. You qualify for 50% discount on SPOTMAS test!';
-  }else {
+    priceHTML = '<div class="price-display"><span class="mrp-strikethrough">42,000 INR</span> <span class="discounted-price">21,000 INR</span></div>';
+  } else {
     message = '📚 Thank you for participating! You qualify for 25% discount. Continue learning about cancer awareness!';
+    priceHTML = '<div class="price-display"><span class="mrp-strikethrough">42,000 INR</span> <span class="discounted-price">31,500 INR</span></div>';
   }
   
-  scoreMessage.textContent = message;
+  scoreMessage.innerHTML = message + priceHTML;
   
   // Hide submit button and show results
   submitBtn.style.display = 'none';
@@ -162,7 +165,6 @@ function showResults(score) {
     resultsSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, 300);
 }
-
 // Proceed to booking
 if (proceedBtn) {
   proceedBtn.addEventListener('click', function() {
@@ -170,14 +172,12 @@ if (proceedBtn) {
     window.location.href = 'booking.html';
   });
 }
-
 // Prevent going back after quiz submission
 window.addEventListener('beforeunload', function() {
   if (quizForm && quizForm.classList.contains('quiz-submitted')) {
     return 'Are you sure you want to leave? Your quiz results will be saved.';
   }
 });
-
 // Auto-scroll to top on page load
 window.addEventListener('load', function() {
   window.scrollTo(0, 0);
