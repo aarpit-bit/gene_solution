@@ -36,6 +36,33 @@ body {
   line-height: 1.6;
 }
 
+
+.price-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.mrp-strikethrough {
+  font-size: 18px;
+  color: #888;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.discounted-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #27ae60;
+  letter-spacing: 0.5px;
+}
+
 /* ============================= */
 /* HEADER SECTION */
 /* ============================= */
