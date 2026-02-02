@@ -3,7 +3,7 @@ const correctAnswers = {
   q1: 'B',
   q2: 'B',
   q3: 'B',
-  q4: 'B',
+  q4: 'D',
   q5: 'C',
   q6: 'C'
 };
