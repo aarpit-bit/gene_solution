@@ -50,16 +50,16 @@ body {
 }
 
 .mrp-strikethrough {
-  font-size: 18px;
+  font-size: 10px;
   color: #888;
   text-decoration: line-through;
   font-weight: 500;
 }
 
 .discounted-price {
-  font-size: 28px;
+  font-size: 14px;
   font-weight: 700;
-  color: #27ae60;
+  color: #6c3297;
   letter-spacing: 0.5px;
 }
 
@@ -73,18 +73,17 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.top-logo {
-  text-align: center;
-  padding: clamp(1px, 3vw, 1px) 0;
-  background: #074056;
-  width: 100%;
-}
-
 .top-logo img {
-  height: clamp(100px, 12vw, 80px);
+  height: clamp(70px, 10vw, 90px);
   width: auto;
   max-width: 100%;
+  transition: transform 0.3s ease;
 }
+
+.top-logo img:hover {
+  transform: scale(1.05);
+}
+
 .campaign-bar {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: #fff;
@@ -404,7 +403,7 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%);
+  background: #6c3297;
   color: #fff;
   padding: clamp(14px, 3vw, 18px) clamp(30px, 6vw, 45px);
   border-radius: 12px;
